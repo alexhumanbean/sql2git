@@ -21,6 +21,7 @@ public class Main
     {
         Config.LoadConfig();
         File gitWorkDir = new File(Config.CONF_WORKING_DIR);
+
         Git git = Git.open(gitWorkDir);
         Repository repo = git.getRepository();
 

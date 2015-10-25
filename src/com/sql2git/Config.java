@@ -31,10 +31,13 @@ public class Config {
             br.close();
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(null, "Не найден конфигурационный файл:\n" + CONF_CONFIG_FILE);
+            System.exit(0);
         } catch (UnsupportedEncodingException e) {
             JOptionPane.showMessageDialog(null, "Неподдерживаемая кодировка файла:\n" + CONF_CONFIG_FILE);
+            System.exit(0);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Не удается прочитать файл:\n" + CONF_CONFIG_FILE);
+            System.exit(0);
         }
 
         JSONParser parser = new JSONParser();
@@ -45,6 +48,7 @@ public class Config {
             CONF_WORKING_DIR = (String) jsonObj.get("CONF_WORKING_DIR");
         } catch (ParseException e) {
             JOptionPane.showMessageDialog(null, "Неправильный формат конфигурационного файла:\n" + e.toString());
+            System.exit(0);
         }
     }
 }
