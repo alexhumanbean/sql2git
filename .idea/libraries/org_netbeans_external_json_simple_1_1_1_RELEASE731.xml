@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="org.netbeans.external:json-simple-1.1.1:RELEASE731" type="repository">
+    <properties maven-id="org.netbeans.external:json-simple-1.1.1:RELEASE731" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/netbeans/external/json-simple-1.1.1/RELEASE731/json-simple-1.1.1-RELEASE731.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
