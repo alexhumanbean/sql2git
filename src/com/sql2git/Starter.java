@@ -21,7 +21,7 @@ import java.io.IOException;
  */
 public class Starter extends Common {
     public void Start() {
-        File gitWorkDir = new File(Config.CONF_WORKING_DIR);
+        File gitWorkDir = new File(Config.CONF_REPOSITORY_PATH_LOCAL);
         try {
             Git git = Git.open(gitWorkDir);
             Repository repo = git.getRepository();
@@ -50,7 +50,7 @@ public class Starter extends Common {
             loader.copyTo(out);
             System.out.println("README.md:\n" + out.toString());
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Ошибка при работе с репозиторием:\n" + e.toString());
+            JOptionPane.showMessageDialog(null, "РћС€РёР±РєР° РїСЂРё СЂР°Р±РѕС‚Рµ СЃ СЂРµРїРѕР·РёС‚РѕСЂРёРµРј:\n" + e.toString());
         }
     }
 }

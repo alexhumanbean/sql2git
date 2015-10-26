@@ -13,7 +13,7 @@ import java.io.*;
 public class Config extends Common {
     public static String CONF_CONFIG_FILE = "config.json";
     public static String CONF_REPOSITORY_PATH;
-    public static String CONF_WORKING_DIR;
+    public static String CONF_REPOSITORY_PATH_LOCAL;
     public static String CONF_LOGGING_ENABLED;
 
     public void LoadConfig() {
@@ -43,7 +43,7 @@ public class Config extends Common {
         try {
             jsonObj = (JSONObject) parser.parse(json);
             CONF_REPOSITORY_PATH = (String) jsonObj.get("CONF_REPOSITORY_PATH");
-            CONF_WORKING_DIR = (String) jsonObj.get("CONF_WORKING_DIR");
+            CONF_REPOSITORY_PATH_LOCAL = (String) jsonObj.get("CONF_REPOSITORY_PATH_LOCAL");
             CONF_LOGGING_ENABLED = (String) jsonObj.get("CONF_LOGGING_ENABLED");
             if("1".equals(CONF_LOGGING_ENABLED)) {
                 Common.loggingEnabled = 1;

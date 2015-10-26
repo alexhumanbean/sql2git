@@ -1,5 +1,5 @@
 {
-	"CONF_REPOSITORY_PATH"	:	"https://github.com/alexhumanbean/testrepo.git",
-	"CONF_WORKING_DIR"	:	"C:/GitHub/testrepo/",
-	"CONF_LOGGING_ENABLED"	:	"1"
+	"CONF_REPOSITORY_PATH"			:	"https://github.com/alexhumanbean/testrepo.git",
+	"CONF_REPOSITORY_PATH_LOCAL"	:	"C:/GitHub/testrepo/",
+	"CONF_LOGGING_ENABLED"			:	"1"
 }
