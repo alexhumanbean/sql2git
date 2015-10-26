@@ -21,6 +21,8 @@ import java.io.IOException;
  */
 public class Starter extends Common {
     public void Start() {
+        logInfo(".....Starting sql2git.....");
+
         File gitWorkDir = new File(Config.CONF_REPOSITORY_PATH_LOCAL);
         try {
             Git git = Git.open(gitWorkDir);

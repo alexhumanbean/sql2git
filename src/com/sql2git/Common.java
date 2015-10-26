@@ -1,8 +1,6 @@
 package com.sql2git;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +14,7 @@ public class Common {
 
     private Logger initLogger() {
         if (log == null) {
-            log = LoggerFactory.getLogger(this.getClass());
+            log = Logger.getLogger(this.getClass());
         }
         return log;
     }
@@ -31,5 +29,12 @@ public class Common {
     }
     protected void logFatalError(String errMess) {
         logFatalError(errMess, null);
+    }
+
+    protected void logInfo(String infoMess) {
+        if(Common.loggingEnabled == 1) {
+            initLogger();
+            log.info(infoMess);
+        }
     }
 }

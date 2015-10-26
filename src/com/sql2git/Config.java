@@ -4,7 +4,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import javax.swing.*;
 import java.io.*;
 
 /**
@@ -51,6 +50,5 @@ public class Config extends Common {
         } catch (ParseException e) {
             logFatalError("Неправильный формат конфигурационного файла:\n" + e.toString());
         }
-        logFatalError("Не найден конфигурационный файл:\n" + CONF_CONFIG_FILE);
     }
 }
