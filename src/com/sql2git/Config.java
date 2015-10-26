@@ -10,12 +10,13 @@ import java.io.*;
 /**
  * Created by Alex on 25.10.2015.
  */
-public class Config {
+public class Config extends Common {
     public static String CONF_CONFIG_FILE = "config.json";
     public static String CONF_REPOSITORY_PATH;
     public static String CONF_WORKING_DIR;
+    public static String CONF_LOGGING_ENABLED;
 
-    public static void LoadConfig() {
+    public void LoadConfig() {
         String json = "";
         try {
             File file = new File(CONF_CONFIG_FILE);
@@ -30,14 +31,11 @@ public class Config {
             }
             br.close();
         } catch (FileNotFoundException e) {
-            JOptionPane.showMessageDialog(null, "Не найден конфигурационный файл:\n" + CONF_CONFIG_FILE);
-            System.exit(0);
+            logFatalError("Не найден конфигурационный файл:\n" + CONF_CONFIG_FILE);
         } catch (UnsupportedEncodingException e) {
-            JOptionPane.showMessageDialog(null, "Неподдерживаемая кодировка файла:\n" + CONF_CONFIG_FILE);
-            System.exit(0);
+            logFatalError("Неподдерживаемая кодировка файла:\n" + CONF_CONFIG_FILE);
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Не удается прочитать файл:\n" + CONF_CONFIG_FILE);
-            System.exit(0);
+            logFatalError("Не удается прочитать файл:\n" + CONF_CONFIG_FILE);
         }
 
         JSONParser parser = new JSONParser();
@@ -46,9 +44,13 @@ public class Config {
             jsonObj = (JSONObject) parser.parse(json);
             CONF_REPOSITORY_PATH = (String) jsonObj.get("CONF_REPOSITORY_PATH");
             CONF_WORKING_DIR = (String) jsonObj.get("CONF_WORKING_DIR");
+            CONF_LOGGING_ENABLED = (String) jsonObj.get("CONF_LOGGING_ENABLED");
+            if("1".equals(CONF_LOGGING_ENABLED)) {
+                Common.loggingEnabled = 1;
+            }
         } catch (ParseException e) {
-            JOptionPane.showMessageDialog(null, "Неправильный формат конфигурационного файла:\n" + e.toString());
-            System.exit(0);
+            logFatalError("Неправильный формат конфигурационного файла:\n" + e.toString());
         }
+        logFatalError("Не найден конфигурационный файл:\n" + CONF_CONFIG_FILE);
     }
 }

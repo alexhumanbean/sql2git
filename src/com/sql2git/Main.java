@@ -4,7 +4,7 @@ public class Main
 {
     public static void main(String[] args) throws Exception
     {
-        Config.LoadConfig();
+        new Config().LoadConfig();
         new Starter().Start();
     }
 }

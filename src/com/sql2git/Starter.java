@@ -19,7 +19,7 @@ import java.io.IOException;
 /**
  * Created by Alex on 25.10.2015.
  */
-public class Starter {
+public class Starter extends Common {
     public void Start() {
         File gitWorkDir = new File(Config.CONF_WORKING_DIR);
         try {
