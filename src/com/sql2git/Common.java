@@ -8,8 +8,8 @@ import java.awt.*;
 /**
  * Created by Alex on 26.10.2015.
  */
-public class Common {
-    protected static int loggingEnabled = 0;
+public abstract class Common {
+    protected static int loggingEnabled = 1;
     private Logger log;
 
     private Logger initLogger() {

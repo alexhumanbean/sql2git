@@ -1,5 +1,11 @@
-package com.sql2git;
+package com.sql2git.repository;
 
+import com.sql2git.Common;
+import com.sql2git.Config;
+import com.sun.jna.Native;
+import com.sun.jna.Pointer;
+import com.sun.jna.platform.win32.User32;
+import com.sun.jna.platform.win32.WinDef.HWND;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.ObjectId;
@@ -19,10 +25,17 @@ import java.io.IOException;
 /**
  * Created by Alex on 25.10.2015.
  */
-public class Starter extends Common {
-    public void Start() {
-        logInfo(".....Starting sql2git.....");
+public class RepositoryApi extends Common {
+    private static RepositoryApi instance;
+    private RepositoryApi() {}
+    public static RepositoryApi getInstance() {
+        if(instance == null) {
+            instance = new RepositoryApi();
+        }
+        return instance;
+    }
 
+    public void Init() {
         File gitWorkDir = new File(Config.CONF_REPOSITORY_PATH_LOCAL);
         try {
             Git git = Git.open(gitWorkDir);
