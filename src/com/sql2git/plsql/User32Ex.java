@@ -2,6 +2,7 @@ package com.sql2git.plsql;
 
 import com.sun.jna.Native;
 import com.sun.jna.platform.win32.User32;
+import com.sun.jna.platform.win32.WinDef;
 import com.sun.jna.win32.W32APIOptions;
 
 /**
@@ -18,5 +19,9 @@ public interface User32Ex extends User32 {
     <T> int SendMessage(HWND hWnd, int msg, WPARAM wParam, T lParam);
     int SendMessage(HWND hWnd, int msg, int wParam, char[] lParam);
     <T> int SendMessage(HWND hWnd, int msg, int wParam, T lParam);
+
+    boolean SetWindowText(HWND hWnd, char[] lpString);
+    WinDef.HWND GetForegroundWindow();
+    void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
 }
 

@@ -7,12 +7,16 @@ import com.sun.jna.Pointer;
 import com.sun.jna.platform.win32.User32;
 import com.sun.jna.platform.win32.WinDef;
 
+import java.awt.datatransfer.Clipboard;
+
 /**
  * Created by Alex on 27.10.2015.
  */
 public class PlSqlWindow extends Common {
     private static PlSqlWindow instance;
-    private PlSqlWindow() {}
+    private PlSqlWindow() {
+        clipboardAccess = new ClipboardAccess();
+    }
     public static PlSqlWindow getInstance() {
         if(instance == null) {
             instance = new PlSqlWindow();
@@ -20,6 +24,7 @@ public class PlSqlWindow extends Common {
         return instance;
     }
 
+    private ClipboardAccess clipboardAccess;
     private WinDef.HWND hwndTop;
     private WinDef.HWND hwndSql;
 
@@ -68,6 +73,34 @@ public class PlSqlWindow extends Common {
     public void GetText() {
         if(hwndSql != null) {
             //User32Ex.INSTANCE.SendMessage(hwndSql, User32Ex.WM_SETTEXT, 0, Native.toByteArray("TextMessage"));
+
+            /*byte[] windowText = new byte[512];
+            int res = User32Ex.INSTANCE.SendMessage(hwndSql, User32Ex.WM_GETTEXTLENGTH, 0, 0);
+            User32Ex.INSTANCE.SendMessage(hwndSql, User32Ex.WM_GETTEXT, res + 1 , windowText);
+
+            String theText = Native.toString(windowText);
+            System.out.println(theText);*/
+
+            /*char[] windowText = new char[512];
+            User32Ex.INSTANCE.GetWindowText(hwndSql, windowText, 512);
+            String theText = Native.toString(windowText);
+            System.out.println(theText);
+
+            String newText = "Oops";
+            User32Ex.INSTANCE.SetWindowText(hwndTop, newText.toCharArray());*/
+
+            /*String theText = "";
+            try {
+                theText = clipboardAccess.getClipboardText();
+                System.out.println(theText);
+                clipboardAccess.setClipboardText("qweqweqwe");
+            } catch (Exception e) {
+                logFatalError("Ощибка при доступе к буферу обмена:\n" + e.toString());
+            }*/
+
+            String theText = "";
+            theText = clipboardAccess.getSelectedText(hwndTop);
+            System.out.println(theText);
         }
     }
 }

@@ -19,16 +19,23 @@ public abstract class Common {
         return log;
     }
 
-    protected void logFatalError(String errMess, Component parentComponent) {
+    protected void logError(String errMess, Component parentComponent, boolean isFatal) {
         if(Common.loggingEnabled == 1) {
             initLogger();
             JOptionPane.showMessageDialog(parentComponent, errMess);
             log.error(errMess);
-            System.exit(0);
+            if(isFatal)
+                System.exit(0);
         }
     }
+    protected void logError(String errMess) {
+        logError(errMess, null, false);
+    }
+    protected void logFatalError(String errMess, Component parentComponent) {
+        logError(errMess, parentComponent, true);
+    }
     protected void logFatalError(String errMess) {
-        logFatalError(errMess, null);
+        logError(errMess, null, true);
     }
 
     protected void logInfo(String infoMess) {
