@@ -10,5 +10,7 @@ public class Main
         Config.getInstance().LoadConfig();
         PlSqlWindow.getInstance().FindWindow();
         RepositoryApi.getInstance().Init();
+
+        PlSqlWindow.getInstance().GetText();
     }
 }

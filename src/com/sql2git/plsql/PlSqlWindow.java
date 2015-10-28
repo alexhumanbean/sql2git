@@ -24,22 +24,22 @@ public class PlSqlWindow extends Common {
     private WinDef.HWND hwndSql;
 
     public void FindWindow() {
-        final User32 lib = (User32) Native.loadLibrary("user32", User32.class);
+        //final User32 lib = (User32) Native.loadLibrary("user32", User32.class);
         if(Config.CONST_TOP_CLASS_USE_FOREGROUND)
-            hwndTop = User32.INSTANCE.GetForegroundWindow();
+            hwndTop = User32Ex.INSTANCE.GetForegroundWindow();
         else
-            hwndTop = User32.INSTANCE.FindWindow(Config.CONST_TOP_CLASS_NAME, null);
+            hwndTop = User32Ex.INSTANCE.FindWindow(Config.CONST_TOP_CLASS_NAME, null);
         //System.out.println(hWnd_S);
         //5 - GW_CHILD (https://msdn.microsoft.com/en-us/library/windows/desktop/ms633515(v=vs.85).aspx)
-        //HWND hWnd_sql_form = User32.INSTANCE.GetWindow(hWnd_plsql_dev, new WinDef.DWORD(4));
+        //HWND hWnd_sql_form = User32Ex.INSTANCE.GetWindow(hWnd_plsql_dev, new WinDef.DWORD(4));
 
-        User32.INSTANCE.EnumChildWindows(hwndTop, new User32.WNDENUMPROC() {
+        User32Ex.INSTANCE.EnumChildWindows(hwndTop, new User32.WNDENUMPROC() {
             @Override
             public boolean callback(WinDef.HWND hwnd, Pointer pntr) {
                 char[] textBuffer = new char[512];
                 char[] textBuffer2 = new char[512];
-                User32.INSTANCE.GetClassName(hwnd, textBuffer, 512);
-                User32.INSTANCE.GetWindowText(hwnd, textBuffer2, 512);
+                User32Ex.INSTANCE.GetClassName(hwnd, textBuffer, 512);
+                User32Ex.INSTANCE.GetWindowText(hwnd, textBuffer2, 512);
                 String wClassName = Native.toString(textBuffer);
                 String wWindowText = Native.toString(textBuffer2);
                 //TTntPanel.UnicodeClass    //SQL Window - New
@@ -67,7 +67,7 @@ public class PlSqlWindow extends Common {
 
     public void GetText() {
         if(hwndSql != null) {
-
+            //User32Ex.INSTANCE.SendMessage(hwndSql, User32Ex.WM_SETTEXT, 0, Native.toByteArray("TextMessage"));
         }
     }
 }
