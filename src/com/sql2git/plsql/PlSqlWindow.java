@@ -70,12 +70,4 @@ public class PlSqlWindow extends Common {
 
         }
     }
-
-    public WinDef.HWND getHwndTop() {
-        return hwndTop;
-    }
-
-    public WinDef.HWND getHwndSql() {
-        return hwndSql;
-    }
 }
